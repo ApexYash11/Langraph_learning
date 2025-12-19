@@ -5,4 +5,14 @@ _pycache_
 __pycache__/
 *.py[cod]
 myenv/
+## Ignore LangGraph chatbot state DB and checkpoint files
+langgraphchatbot/*.db
+langgraphchatbot/*.db-shm
+langgraphchatbot/*.db-wal
+langgraphchatbot/*-checkpoint*.bin
+
+# IDE / OS
+.vscode/
+Thumbs.db
+desktop.ini
 
