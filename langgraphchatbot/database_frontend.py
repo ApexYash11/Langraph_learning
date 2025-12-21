@@ -66,14 +66,14 @@ for thread in st.session_state["chat_threads"]:
 # loading the conversation history
 for message in st.session_state['message_history']:
     with st.chat_message(message["role"]):
-        st.text(message["content"])
+        st.markdown(message["content"])
 
 user_input = st.chat_input("Type your message here...")
 
 if user_input:
     st.session_state['message_history'].append({"role": "user", "content": user_input})
     with st.chat_message("user"):
-        st.text(user_input)
+        st.markdown(user_input)
 
 
     CONFIG: RunnableConfig = {
@@ -88,4 +88,4 @@ if user_input:
     ai_message = response['messages'][-1].content
     st.session_state['message_history'].append({"role": "assistant", "content": ai_message})
     with st.chat_message("assistant"):
-        st.text(ai_message)
+        st.markdown(ai_message)
