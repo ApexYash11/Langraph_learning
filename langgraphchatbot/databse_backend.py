@@ -5,13 +5,16 @@ import os
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import SystemMessage, HumanMessage, BaseMessage
 from langgraph.checkpoint.sqlite import SqliteSaver
+from pydantic import SecretStr
 from langgraph.graph.message import add_messages
 import sqlite3
 
 load_dotenv(dotenv_path="../.env")  # Load from parent directory
 
 model_name = "gemini-2.5-flash"  # Valid model name
-llm = ChatGoogleGenerativeAI(model=model_name, api_key=os.getenv("GOOGLE_API_KEY"))
+key = os.getenv("GOOGLE_API_KEY")
+api_key = SecretStr(key) if key is not None else None
+llm = ChatGoogleGenerativeAI(model=model_name, api_key=api_key)
 
 
 class chatstate(TypedDict):
